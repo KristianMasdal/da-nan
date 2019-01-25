@@ -1,0 +1,27 @@
+1. /var/www er motert som volum i Dockerfile, og filer er kopiert fra lokal og inn i volumet.
+   For å verifisere at volumet fungerer, se innholdet i volumet på vertssystemet etter at kontaineren
+   er kjørt.
+
+2. For å mappe root i kontaineren til en upriviligert bruker i vertsystemet gjøres følgende:
+   
+   - Stopp Docker Daemon: sudo systemctl stop docker
+   
+   - Start Docker Daemon med med namespace støtte: sudo dockerd --userns-remap=default &
+
+   - Monter et volum ved bygging / kjøring
+
+   - Kjør container docker run -p 80:80 --name server --cpuset-cpus 0 --pids-limit 200 nan/mp1
+
+   - Root i kontainer skal nå ikke ha mulighet til å slette filer i montert volum
+
+3. Prosessorbruk
+
+   - Flagg ved docker run -> --cpuset-cpus 0 (Container er begrenset til prosessorkjerne med index 0)
+
+   - Flagg ved docker run -> --pids-limit 200 (Forhindrer forkbomb ved å begrense antall prosesser i         
+                                               prosesstabellen til 200)
+
+4. Sikkerhet / capabilities
+
+   - Flagg ved docker run -> --cap-drop=ALL --cap-add=NET_BIND_SERVICE --cap-add=SETUID --cap-add=SETGID --cap-add=SYS_CHROOT 
+     (Stopper alle capabilites, og legger til de nødvendige)

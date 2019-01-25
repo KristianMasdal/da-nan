@@ -1,0 +1,41 @@
+body {
+    background:  #e4e2dd;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 10px;
+}
+
+p {
+    margin: 10px;
+}
+
+img {
+    display: block;
+    height: 300px;
+    width: 222px;
+    padding: 10px;
+}
+
+#title {
+    background:  #e87d72 ;
+    width: 800px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+#main {
+    background: white;
+    width: 800px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border-radius: 5px;
+}
+
